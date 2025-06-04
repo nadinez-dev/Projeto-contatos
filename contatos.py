@@ -32,7 +32,7 @@ def atualizar_contato(indice, nome, telefone, email):
         contatos[indice_contato_ajustado]["nome"] = nome    
         contatos[indice_contato_ajustado]["telefone"] = telefone
         contatos[indice_contato_ajustado]["email"] = email
-        print(f"Contato {indice + 1} atualizado com sucesso!")
+        print(f"Contato {indice} atualizado com sucesso!")
     else:
         print("Índice inválido.") 
     return
@@ -41,7 +41,7 @@ def marcar_contato_favorito(indice):
     indice_contato_ajustado = int(indice) - 1
     if indice_contato_ajustado >= 0 and indice_contato_ajustado < len(contatos):
         contatos[indice_contato_ajustado]["favorito"] = True
-        print(f"Contato {indice + 1} marcado como favorito.")
+        print(f"Contato {indice} marcado como favorito.")
     else:
         print("Índice inválido.")
     return
@@ -50,7 +50,7 @@ def desmarcar_contato_favorito(indice):
     indice_contato_ajustado = int(indice) - 1
     if indice_contato_ajustado >= 0 and indice_contato_ajustado < len(contatos):
         contatos[indice_contato_ajustado]["favorito"] = False
-        print(f"Contato {indice + 1} desmarcado como favorito.")
+        print(f"Contato {indice} desmarcado como favorito.")
     else:
         print("Índice inválido.")
     return
@@ -62,7 +62,8 @@ def ver_contatos_favoritos():
         return
     print("\nLista de contatos favoritos:")
     for indice, contato in enumerate(favoritos, start=1):
-        print(f"{indice}. {contato['nome']} - {contato['telefone']} - {contato['email']}")
+        favorito = "★" if contato["favorito"] else "〇"
+        print(f"{indice}. {favorito} {contato['nome']} - {contato['telefone']} - {contato['email']}")
     return
 
 def deletar_contato(indice):
@@ -100,7 +101,7 @@ while True:
 
   elif escolha == "3":
     visualizar_contatos()
-    indice = int(input("Digite o número do contato que deseja editar: ")) - 1
+    indice = int(input("Digite o número do contato que deseja editar: "))
     nome = input("Digite o novo nome do contato (deixe em branco para manter o atual): ")
     telefone = input("Digite o novo telefone do contato (deixe em branco para manter o atual): ")
     email = input("Digite o novo email do contato (deixe em branco para manter o atual): ")
@@ -108,12 +109,12 @@ while True:
 
   elif escolha == "4":
     visualizar_contatos()
-    indice = int(input("Digite o número do contato que deseja marcar como favorito: ")) - 1
+    indice = int(input("Digite o número do contato que deseja marcar como favorito: "))
     marcar_contato_favorito(indice)
 
   elif escolha == "5":
-    visualizar_contatos()
-    indice = int(input("Digite o número do contato que deseja desmarcar como favorito: ")) - 1
+    ver_contatos_favoritos()
+    indice = int(input("Digite o número do contato que deseja desmarcar como favorito: ")) 
     desmarcar_contato_favorito(indice)
 
   elif escolha == "6":
@@ -121,7 +122,7 @@ while True:
 
   elif escolha == "7":
     visualizar_contatos()
-    indice = int(input("Digite o número do contato que deseja deletar: ")) - 1
+    indice = int(input("Digite o número do contato que deseja deletar: ")) 
     deletar_contato(indice)
 
   elif escolha == "8":
